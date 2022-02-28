@@ -17,13 +17,16 @@ public:
 	//Destructor
 	~Stage();
 
+	void nextNote(Chord c);
+
 	//Points counter fonctions
 	int getPoints();
-	void addPoints();
+	void addPoints(int x);
 
 	//Combo counter fonctions
 	int getCombo();
-	void addCombo();
+	void addCombo(int x);
+	void resetCombo();
 
 
 private:
