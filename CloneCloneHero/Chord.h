@@ -31,8 +31,8 @@ public:
 	* Overridden constructor for Chord
 	* 
 	* n: notes
-	* d: delay
 	* t: type
+	* d: delay
 	* s: sustain
 	*/
 	Chord(int n, int t, float d, float s);
@@ -43,11 +43,26 @@ public:
 	~Chord();
 
 	/**
+	* DEPRECATED
 	* Gets the notes of the chord
 	* 
 	* Returns: a string of the notes to display
 	*/
-	const string getNotes();
+	// const string getNotes();
+
+	/**
+	* Gets the notes of the chord
+	*
+	* Returns: the notes in decimal form
+	*/
+	const int getNotes();
+
+	/**
+	* Gets the type of the chord
+	* 
+	* Returns: the value corresponding to the chord type
+	*/
+	const int getType();
 
 	/**
 	* Gets the delay at which the chord should appear if it has any

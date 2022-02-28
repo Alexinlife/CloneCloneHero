@@ -42,7 +42,21 @@ class Chart
 		* delay: the delay of the chord
 		* sustain: the sustain of the chord
 		*/
-		void addChord(int notes, int type, float delay, float sustain);
+		void pushChord(int notes, int type, float delay, float sustain);
+
+		/**
+		* Gets the next chord in the queue
+		* 
+		* Returns: the first Chord in the queue
+		*/
+		Chord nextChord();
+
+		/**
+		* Removes the first chord and returns it
+		*
+		* Returns: the first Chord in the queue
+		*/
+		Chord unqueueChord();
 
 		/**
 		* Finds an existing beat and copies it in the chart
@@ -63,6 +77,21 @@ class Chart
 		* Converts the chart to a string that can be used by the Game class
 		*/
 		string toString();
+
+		/**
+		* Sets the signature of the chart
+		* 
+		* b: beats
+		* m: measures
+		*/
+		void setSignature(int b, int m);
+
+		/**
+		* Sets the tempo of the chart
+		* 
+		* t: tempo
+		*/
+		void setTempo(float t);
 
 	private:
 		int beats;
