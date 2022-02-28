@@ -12,10 +12,10 @@ using namespace std;
 * Class: Chord
 * Description: A chord contains at least 1 note and a maximum of 5. It can be delayed to create tuplets.
 *              Notes can be of the following types:
-*                  - Default: at least 1 fret, needs to be strummed
-*                  - Tap: at least 1 fret, no strum
-*                  - HOPO: at least one fret, no strum as long as the last note was played correctly
-*                  - Open: no fret, only a strum
+*                  - Default (type 0, 0): at least 1 fret (except for open, see below), needs to be strummed
+*                  - Open (type 0, - - - - -): no fret, only a strum
+*                  - Tap (type 1, O): at least 1 fret, no strum
+*                  - HOPO (type 2, @): at least one fret, no strum as long as the last note was played correctly
 *              The chord can be sustained but it currently does not support more complex types
 *              (disjointed chord, extended sustain, etc.)
 **/
