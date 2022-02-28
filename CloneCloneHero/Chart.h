@@ -25,11 +25,6 @@ class Chart
 
 		/**
 		* Overridden constructor for Chart
-		*
-		* n: notes
-		* d: delay
-		* t: type
-		* s: sustain
 		*/
 		Chart(int notes, int type, int delay, float sustain);
 
@@ -40,7 +35,7 @@ class Chart
 
 		/**
 		* Adds a chord to the chart. If at least one chord is added,
-		* the nextone will be added at the end of the other chords
+		* the next one will be added at the end of the other chords
 		* 
 		* notes: the notes to add to the new chord
 		* type: the type of chord
