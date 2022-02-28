@@ -3,6 +3,11 @@
 
 //Constructor
 Stage::Stage() {
+	for (int i = 0; i < LONGUEUR_STG; i++) {
+		for (int j = 0; j < LARGEUR_STG; j++) {
+			theStage[i][j] = ' ';
+		}
+	}
 	points = 0;
 	combo = 0;
 }
@@ -13,7 +18,7 @@ Stage::~Stage() {
 
 void Stage::nextNote(Chord c) {
 	char note = '0';
-	switch (c.getType());
+	switch (c.getType())
 	{
 	case 0:
 		note = '0';
