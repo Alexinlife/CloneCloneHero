@@ -17,7 +17,8 @@ Chart::~Chart()
 
 void Chart::addChord(int notes, int type, float delay, float sustain)
 {
-
+	Chord newChord(notes, type, delay, sustain);
+	chords.push(newChord);
 }
 
 void Chart::copyBeat(int index)
