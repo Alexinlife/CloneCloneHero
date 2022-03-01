@@ -5,7 +5,7 @@
 Stage::Stage() {
 	for (int i = 0; i < LONGUEUR_STG; i++) {
 		for (int j = 0; j < LARGEUR_STG; j++) {
-			theStage[i][j] = '1';
+			theStage[i][j] = ' ';
 		}
 	}
 	points = 0;
@@ -16,175 +16,189 @@ Stage::~Stage() {
 
 }
 
-void Stage::nextNote(MChord c) {
-	char note;
-	switch (c.getType())
-	{
-	case 0:
-		note = '0';
-		break;
-	case 1:
-		note = 'O';
-		break;
-	case 2:
-		note = '@';
-		break;
-	}
-	cout << c.getType() << endl;
-	switch (c.getNotes())
-	{
-	case 0:
-		for (int i = 0; i < LARGEUR_STG; i++) {
-			theStage[0][i] = '-';
-		}
-		break;
-	case 1:
-		theStage[0][0] = note;
-		break;
-	case 2:
-		theStage[0][1] = note;
-		break;
-	case 3:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		break;
-	case 4:
-		theStage[0][2] = note;
-		break;
-	case 5:
-		theStage[0][0] = note;
-		theStage[0][2] = note;
-		break;
-	case 6:
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		break;
-	case 7:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		break;
-	case 8:
-		theStage[0][3] = note;
-		break;
-	case 9:
-		theStage[0][0] = note;
-		theStage[0][3] = note;
-		break;
-	case 10:
-		theStage[0][1] = note;
-		theStage[0][3] = note;
-		break;
-	case 11:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][3] = note;
-		break;
-	case 12:
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		break;
-	case 13:
-		theStage[0][0] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		break;
-	case 14:
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		break;
-	case 15:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		break;
-	case 16:
-		theStage[0][4] = note;
-		break;
-	case 17:
-		theStage[0][0] = note;
-		theStage[0][4] = note;
-		break;
-	case 18:
-		theStage[0][1] = note;
-		theStage[0][4] = note;
-		break;
-	case 19:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][4] = note;
-		break;
-	case 20:
-		theStage[0][2] = note;
-		theStage[0][4] = note;
-		break;
-	case 21:
-		theStage[0][0] = note;
-		theStage[0][2] = note;
-		theStage[0][4] = note;
-		break;
-	case 22:
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][4] = note;
-		break;
-	case 23:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][4] = note;
-		break;
-	case 24:
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 25:
-		theStage[0][0] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 26:
-		theStage[0][1] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 27:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 28:
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 29:
-		theStage[0][0] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 30:
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
-	case 31:
-		theStage[0][0] = note;
-		theStage[0][1] = note;
-		theStage[0][2] = note;
-		theStage[0][3] = note;
-		theStage[0][4] = note;
-		break;
+void Stage::nextNote(Chart* chart) {
+	
+	push();
+	if (!chart->isEmpty()) {
+		MChord c = chart->unqueueChord();
+		char vide = ' ';
 
-	default:
-		break;
+		char note;
+		switch (c.getType())
+		{
+		case 0:
+			note = '0';
+			break;
+		case 1:
+			note = 'O';
+			break;
+		case 2:
+			note = '@';
+			break;
+		}
+		cout << c.getType() << endl;
+		switch (c.getNotes())
+		{
+		case 0:
+			for (int i = 0; i < LARGEUR_STG; i++) {
+				theStage[0][i] = '-';
+			}
+			break;
+		case 1:
+			theStage[0][0] = note;
+			break;
+		case 2:
+			theStage[0][1] = note;
+			break;
+		case 3:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			break;
+		case 4:
+			theStage[0][2] = note;
+			break;
+		case 5:
+			theStage[0][0] = note;
+			theStage[0][2] = note;
+			break;
+		case 6:
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			break;
+		case 7:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			break;
+		case 8:
+			theStage[0][3] = note;
+			break;
+		case 9:
+			theStage[0][0] = note;
+			theStage[0][3] = note;
+			break;
+		case 10:
+			theStage[0][1] = note;
+			theStage[0][3] = note;
+			break;
+		case 11:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][3] = note;
+			break;
+		case 12:
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			break;
+		case 13:
+			theStage[0][0] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			break;
+		case 14:
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			break;
+		case 15:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			break;
+		case 16:
+			theStage[0][4] = note;
+			break;
+		case 17:
+			theStage[0][0] = note;
+			theStage[0][4] = note;
+			break;
+		case 18:
+			theStage[0][1] = note;
+			theStage[0][4] = note;
+			break;
+		case 19:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][4] = note;
+			break;
+		case 20:
+			theStage[0][2] = note;
+			theStage[0][4] = note;
+			break;
+		case 21:
+			theStage[0][0] = note;
+			theStage[0][2] = note;
+			theStage[0][4] = note;
+			break;
+		case 22:
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][4] = note;
+			break;
+		case 23:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][4] = note;
+			break;
+		case 24:
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 25:
+			theStage[0][0] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 26:
+			theStage[0][1] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 27:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 28:
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 29:
+			theStage[0][0] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 30:
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+		case 31:
+			theStage[0][0] = note;
+			theStage[0][1] = note;
+			theStage[0][2] = note;
+			theStage[0][3] = note;
+			theStage[0][4] = note;
+			break;
+
+		default:
+			break;
+		}
+		cout << c.getNotes() << endl;
 	}
-	cout << c.getNotes() << endl;
+	else {
+	theStage[0][0] = ' ';
+	theStage[0][1] = ' ';
+	theStage[0][2] = ' ';
+	theStage[0][3] = ' ';
+	theStage[0][4] = ' ';
+	}
 }
 
 void Stage::push() {
@@ -216,21 +230,28 @@ void Stage::afficher() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	for (int i = 0; i < LONGUEUR_STG - 1; i++) {
+		SetConsoleTextAttribute(h, DEFAULT_COLOR);
+		cout << '|';
+		
+		
 		SetConsoleTextAttribute(h, GRN);
-		cout << theStage[i][0];
+		cout << theStage[i][0] << ' ';
 		//cout << "allllloooooooo";
 
 		SetConsoleTextAttribute(h, RED);
-		cout << theStage[i][1];
+		cout << theStage[i][1] << ' ';
 
 		SetConsoleTextAttribute(h, YLW);
-		cout << theStage[i][2];
+		cout << theStage[i][2] << ' ';
 
 		SetConsoleTextAttribute(h, BLE);
-		cout << theStage[i][3];
+		cout << theStage[i][3] << ' ';
 
 		SetConsoleTextAttribute(h, ORG);
-		cout << theStage[i][4] << endl;
+		cout << theStage[i][4];
+
+		SetConsoleTextAttribute(h, DEFAULT_COLOR);
+		cout << '|' << endl;
 	}
 }
 

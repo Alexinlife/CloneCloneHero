@@ -47,7 +47,7 @@ void Chart::copyPart(float begin, float end)
 
 string Chart::toString()
 {
-
+	return("");
 }
 
 bool Chart::isEmpty()

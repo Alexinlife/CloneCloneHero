@@ -35,7 +35,7 @@ public:
 	//Destructor
 	~Stage();
 
-	void nextNote(MChord c);
+	void nextNote(Chart* c);
 
 	void push();
 

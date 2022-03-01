@@ -41,19 +41,16 @@ int main()
 	chart.nextChord();
 	cout << "5" << endl;
 	system("PAUSE");
-	stage.nextNote(chart.nextChord());
+	stage.nextNote(&chart);
 	cout << "6" << endl;
 	system("PAUSE");
-	chart.unqueueChord();
 	stage.afficher();
 	cout << "7" << endl;
 	system("PAUSE");
 	while (1) {
 		stage.afficher();
 		system("PAUSE");
-		stage.push();
-		stage.nextNote(chart.nextChord());
-		chart.unqueueChord();
+		stage.nextNote(&chart);
 	}
 
 	return 0;
