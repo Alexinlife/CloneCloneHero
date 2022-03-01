@@ -21,7 +21,6 @@ void Stage::nextNote(Chart* chart) {
 	push();
 	if (!chart->isEmpty()) {
 		MChord c = chart->unqueueChord();
-		char vide = ' ';
 
 		char note;
 		switch (c.getType())
@@ -46,134 +45,209 @@ void Stage::nextNote(Chart* chart) {
 			break;
 		case 1:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 2:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 3:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 4:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 5:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 6:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 7:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
+			theStage[0][4] = ' ';
 			break;
 		case 8:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 9:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 10:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 11:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 12:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 13:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 14:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
 			theStage[0][2] = note;
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 15:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
 			theStage[0][2] = note;
 			theStage[0][3] = note;
+			theStage[0][4] = ' ';
 			break;
 		case 16:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 17:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 18:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 19:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 20:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 21:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 22:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 23:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
 			theStage[0][2] = note;
+			theStage[0][3] = ' ';
 			theStage[0][4] = note;
 			break;
 		case 24:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 25:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 26:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 27:
 			theStage[0][0] = note;
 			theStage[0][1] = note;
+			theStage[0][2] = ' ';
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 28:
+			theStage[0][0] = ' ';
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 29:
 			theStage[0][0] = note;
+			theStage[0][1] = ' ';
 			theStage[0][2] = note;
 			theStage[0][3] = note;
 			theStage[0][4] = note;
 			break;
 		case 30:
+			theStage[0][0] = ' ';
 			theStage[0][1] = note;
 			theStage[0][2] = note;
 			theStage[0][3] = note;
