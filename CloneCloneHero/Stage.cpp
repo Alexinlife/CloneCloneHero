@@ -5,7 +5,7 @@
 Stage::Stage() {
 	for (int i = 0; i < LONGUEUR_STG; i++) {
 		for (int j = 0; j < LARGEUR_STG; j++) {
-			theStage[i][j] = ' ';
+			theStage[i][j] = '1';
 		}
 	}
 	points = 0;
@@ -17,7 +17,7 @@ Stage::~Stage() {
 }
 
 void Stage::nextNote(MChord c) {
-	char note = '0';
+	char note;
 	switch (c.getType())
 	{
 	case 0:
@@ -30,6 +30,7 @@ void Stage::nextNote(MChord c) {
 		note = '@';
 		break;
 	}
+	cout << c.getType() << endl;
 	switch (c.getNotes())
 	{
 	case 0:
@@ -183,6 +184,7 @@ void Stage::nextNote(MChord c) {
 	default:
 		break;
 	}
+	cout << c.getNotes() << endl;
 }
 
 void Stage::push() {
@@ -216,6 +218,7 @@ void Stage::afficher() {
 	for (int i = 0; i < LONGUEUR_STG - 1; i++) {
 		SetConsoleTextAttribute(h, GRN);
 		cout << theStage[i][0];
+		//cout << "allllloooooooo";
 
 		SetConsoleTextAttribute(h, RED);
 		cout << theStage[i][1];
@@ -227,7 +230,7 @@ void Stage::afficher() {
 		cout << theStage[i][3];
 
 		SetConsoleTextAttribute(h, ORG);
-		cout << theStage[i][4];
+		cout << theStage[i][4] << endl;
 	}
 }
 

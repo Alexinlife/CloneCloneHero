@@ -26,10 +26,7 @@ MChord::MChord(int n, int t, float d, float s)
 	sustain = s;
 }
 
-MChord::MChord(const MChord& c)
-{
 
-}
 
 MChord::~MChord()
 {
