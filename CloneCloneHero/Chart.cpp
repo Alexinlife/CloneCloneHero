@@ -7,11 +7,6 @@ Chart::Chart()
 	tempo = 120;
 }
 
-Chart::Chart(const Chart& c)
-{
-
-}
-
 Chart::~Chart()
 {
 
@@ -53,6 +48,11 @@ void Chart::copyPart(float begin, float end)
 string Chart::toString()
 {
 
+}
+
+bool Chart::isEmpty()
+{
+	return chords.empty();
 }
 
 void Chart::setSignature(int b, int m)

@@ -24,11 +24,6 @@ class Chart
 		Chart();
 
 		/**
-		* Copy constructor for Chart
-		*/
-		Chart(const Chart& c);
-
-		/**
 		* Destructor for Chart
 		*/
 		~Chart();
@@ -77,6 +72,8 @@ class Chart
 		* Converts the chart to a string that can be used by the Game class
 		*/
 		string toString();
+
+		bool isEmpty();
 
 		/**
 		* Sets the signature of the chart
