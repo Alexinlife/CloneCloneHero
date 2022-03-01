@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Stage.h"
 
 using namespace std;
 
@@ -7,7 +7,7 @@ using namespace std;
  **/
 int main()
 {
-	Game game;
+	Stage stage;
 
 	return 0;
 }

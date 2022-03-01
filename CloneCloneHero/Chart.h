@@ -1,5 +1,5 @@
 #include <queue>
-#include "Chord.h"
+#include "MChord.h"
 
 using namespace std;
 
@@ -24,9 +24,9 @@ class Chart
 		Chart();
 
 		/**
-		* Overridden constructor for Chart
+		* Copy constructor for Chart
 		*/
-		Chart(int notes, int type, int delay, float sustain);
+		Chart(const Chart& c);
 
 		/**
 		* Destructor for Chart
@@ -49,14 +49,14 @@ class Chart
 		* 
 		* Returns: the first Chord in the queue
 		*/
-		Chord nextChord();
+		MChord nextChord();
 
 		/**
 		* Removes the first chord and returns it
 		*
 		* Returns: the first Chord in the queue
 		*/
-		Chord unqueueChord();
+		MChord unqueueChord();
 
 		/**
 		* Finds an existing beat and copies it in the chart
@@ -97,7 +97,7 @@ class Chart
 		int beats;
 		int measures;
 		float tempo;
-		queue<Chord> chords;
+		queue<MChord> chords;
 };
 
 #endif

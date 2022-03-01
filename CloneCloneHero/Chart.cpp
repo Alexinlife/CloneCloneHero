@@ -7,7 +7,7 @@ Chart::Chart()
 	tempo = 120;
 }
 
-Chart::Chart(int notes, int type, int delay, float sustain)
+Chart::Chart(const Chart& c)
 {
 
 }
@@ -19,18 +19,18 @@ Chart::~Chart()
 
 void Chart::pushChord(int notes, int type, float delay, float sustain)
 {
-	Chord newChord(notes, type, delay, sustain);
+	MChord newChord(notes, type, delay, sustain);
 	chords.push(newChord);
 }
 
-Chord Chart::nextChord()
+MChord Chart::nextChord()
 {
 	return chords.front();
 }
 
-Chord Chart::unqueueChord()
+MChord Chart::unqueueChord()
 {
-	Chord unqueued = nextChord();
+	MChord unqueued = nextChord();
 	chords.pop();
 	return unqueued;
 }

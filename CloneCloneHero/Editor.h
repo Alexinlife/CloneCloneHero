@@ -26,7 +26,7 @@ public:
 	/**
 	* Starts the Editor
 	*/
-	void play();
+	Chart test();
 
 private:
 	Chart chart;
