@@ -210,25 +210,24 @@ void Stage::afficher() {
 	
 		WHTB = 240
 	*/
+	system("CLS");
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	for (int i = 0; i < LONGUEUR_STG; i++) {
-		SetConsoleTextAttribute(h, colors[0]);
+	for (int i = 0; i < LONGUEUR_STG-1; i++) {
+		SetConsoleTextAttribute(h, GRN);
 		cout << theStage[i][0];
 
-		SetConsoleTextAttribute(h, colors[1]);
+		SetConsoleTextAttribute(h, RED);
 		cout << theStage[i][1];
 
-		SetConsoleTextAttribute(h, colors[2]);
+		SetConsoleTextAttribute(h, YLW);
 		cout << theStage[i][2];
 		
-		SetConsoleTextAttribute(h, colors[3]);
+		SetConsoleTextAttribute(h, BLE);
 		cout << theStage[i][3];
 
-		SetConsoleTextAttribute(h, colors[4]);
+		SetConsoleTextAttribute(h, ORG);
 		cout << theStage[i][4];
-		//cout << GRN theStage[i][0] << RED theStage[i][1] << YLW theStage[i][2] << BLU theStage[i][3] << ORG theStage[i][4] << endl;
-		
 	}
 }
 
