@@ -5,25 +5,20 @@
 
 using namespace std;
 
-const int colors[] = { FOREGROUND_GREEN | FOREGROUND_INTENSITY,//green
-					FOREGROUND_RED | FOREGROUND_INTENSITY,//red
-					FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, //yellow
-					FOREGROUND_BLUE | FOREGROUND_INTENSITY, //blue
-					FOREGROUND_RED | FOREGROUND_BLUE };//purple
+const int DEFAULT_COLOR = 7;
+const int GRN = 2;
+const int RED = 4;
+const int YLW = 14;
+const int BLE = 1;
+const int ORG = 6;
 
+const int GRNB = 47;
+const int REDB = 79;
+const int YLWB = 224;
+const int BLEB = 31;
+const int ORGB = 111;
 
-#define DFT "\e[0m"
-#define RED "\e[0;31m"
-#define GRN "\e[0;32m"
-#define YLW "\e[0;33m"
-#define BLU "\e[0;34m"
-#define ORG "\e[0;35m"
-#define REDB "\e[0;41m"
-#define GRNB "\e[0;42m"
-#define YLWB "\e[0;43m"
-#define BLUB "\e[0;44m"
-#define ORGB "\e[0;45m"
-#define WTHB "\e[0;7m"
+const int WHTB = 240;
 
 const int LONGUEUR_STG = 30;
 const int LARGEUR_STG = 5;

@@ -194,6 +194,22 @@ void Stage::push() {
 }
 
 void Stage::afficher() {
+	/*
+		defeault = 7
+		GRN = 2
+		RED = 4
+		YLW = 14
+		BLE = 1
+		ORG = 6
+		
+		GRNB = 47
+		REDB = 79
+		YLWB = 224
+		BLEB = 31
+		ORGB = 111
+	
+		WHTB = 240
+	*/
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	for (int i = 0; i < LONGUEUR_STG; i++) {
