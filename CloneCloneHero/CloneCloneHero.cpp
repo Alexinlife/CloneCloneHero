@@ -17,7 +17,7 @@ int main()
 	Chart chart;
 	chart.setSignature(4, 4);
 	chart.setTempo(120);
-
+	
 	chart.pushChord(0, 0, 0, 0);
 	chart.pushChord(0, 0, 0, 1);
 	chart.pushChord(0, 0, 0, 2);
@@ -47,9 +47,6 @@ int main()
 	system("PAUSE");
 	stage.nextNote(&copie);
 	cout << "6" << endl;
-	system("PAUSE");
-	stage.afficher();
-	cout << "7" << endl;
 	system("PAUSE");
 	while (1) {
 		stage.afficher();

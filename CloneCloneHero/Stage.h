@@ -24,6 +24,13 @@ const int LONGUEUR_STG = 30;
 const int LARGEUR_STG = 5;
 
 
+#define T_GRN 0x31
+#define T_RED 0x32
+#define T_YLW 0x33
+#define T_BLE 0x34
+#define T_ORG 0x35
+#define T_STRUM 0x08
+
 #ifndef STAGE_H
 #define STAGE_H
 
@@ -40,6 +47,16 @@ public:
 	void push();
 
 	void afficher();
+
+	char getGRN();
+	char getRED();
+	char getYLW();
+	char getBLE();
+	char getORG();
+
+	void resetKey(int i);
+
+	void keyDetection();
 
 	//Points counter fonctions
 	int getPoints();
