@@ -1,6 +1,7 @@
 #include "Stage.h"
 #include "MChord.h"
 
+using namespace std;
 //Constructor
 Stage::Stage() {
 	for (int i = 0; i < LONGUEUR_STG; i++) {
@@ -276,6 +277,9 @@ void Stage::nextNote(Chart* chart) {
 }
 
 void Stage::push() {
+	if (theStage[LONGUEUR_STG - 1][0] != ' ' || theStage[LONGUEUR_STG - 1][1] != ' ' || theStage[LONGUEUR_STG - 1][2] != ' ' || theStage[LONGUEUR_STG - 1][3] != ' ' || theStage[LONGUEUR_STG - 1][4] != ' ') {
+		resetCombo();
+	}
 	for (int i = LONGUEUR_STG - 1; i > 0; i--) {
 		for (int j = 0; j < LARGEUR_STG; j++) {
 			theStage[i][j] = theStage[i - 1][j];
@@ -301,6 +305,7 @@ void Stage::afficher() {
 		WHTB = 240
 	*/
 	system("CLS");
+	keyDetection();
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	for (int i = 0; i < LONGUEUR_STG - 1; i++) {
@@ -310,7 +315,6 @@ void Stage::afficher() {
 		
 		SetConsoleTextAttribute(h, GRN);
 		cout << theStage[i][0] << ' ';
-		//cout << "allllloooooooo";
 
 		SetConsoleTextAttribute(h, RED);
 		cout << theStage[i][1] << ' ';
@@ -326,6 +330,171 @@ void Stage::afficher() {
 
 		SetConsoleTextAttribute(h, DEFAULT_COLOR);
 		cout << '|' << endl;
+	}
+
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << '|';
+
+	if (GetAsyncKeyState(T_GRN)) {
+		SetConsoleTextAttribute(h, GRNB);
+	}
+	else {
+		SetConsoleTextAttribute(h, WHTB);
+	}
+	cout << theStage[LONGUEUR_STG - 1][0];
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << 'X';
+
+	if (GetAsyncKeyState(T_RED)) {
+		SetConsoleTextAttribute(h, REDB);
+	}
+	else {
+		SetConsoleTextAttribute(h, WHTB);
+	}
+	cout << theStage[LONGUEUR_STG - 1][1];
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << 'X';
+
+	if (GetAsyncKeyState(T_YLW)) {
+		SetConsoleTextAttribute(h, YLWB);
+	}
+	else {
+		SetConsoleTextAttribute(h, WHTB);
+	}
+	cout << theStage[LONGUEUR_STG - 1][2];
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << 'X';
+
+	if (GetAsyncKeyState(T_BLE)) {
+		SetConsoleTextAttribute(h, BLEB);
+	}
+	else {
+		SetConsoleTextAttribute(h, WHTB);
+	}
+	cout << theStage[LONGUEUR_STG - 1][3];
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << 'X';
+
+	if (GetAsyncKeyState(T_ORG)) {
+		SetConsoleTextAttribute(h, ORGB);
+	}
+	else {
+		SetConsoleTextAttribute(h, WHTB);
+	}
+	cout << theStage[LONGUEUR_STG - 1][4];
+
+	SetConsoleTextAttribute(h, DEFAULT_COLOR);
+	cout << '|' << endl;
+
+	cout << "\nCombo: " << combo << "   Points: " << points << endl;
+}
+//theStage[LONGUEUR_STG - 1][4]
+char Stage::getGRN() {
+	return(theStage[LONGUEUR_STG - 1][0]);
+}
+
+char Stage::getRED() {
+	return(theStage[LONGUEUR_STG - 1][1]);
+}
+
+char Stage::getYLW() {
+	return(theStage[LONGUEUR_STG - 1][2]);
+}
+
+char Stage::getBLE() {
+	return(theStage[LONGUEUR_STG - 1][3]);
+}
+
+char Stage::getORG() {
+	return(theStage[LONGUEUR_STG - 1][4]);
+}
+
+void Stage::resetKey(int i) {
+	if (i >= 0 && i < 5) {
+		theStage[LONGUEUR_STG - 1][i] = ' ';
+	}
+}
+
+void Stage::keyDetection() {
+	//Strum only
+	if (getGRN() == '-' && getRED() == '-' && getYLW() == '-' && getBLE() == '-' && getORG() == '-' && GetAsyncKeyState(T_STRUM)) {
+		resetKey(0);
+		resetKey(1);
+		resetKey(2);
+		resetKey(3);
+		resetKey(4);
+
+		addCombo(1);
+		addPoints(1);
+	}
+
+	//0 Keys
+	if (getGRN() == '0' && GetAsyncKeyState(T_GRN) && GetAsyncKeyState(T_STRUM)) {
+		resetKey(0);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getRED() == '0' && GetAsyncKeyState(T_RED) && GetAsyncKeyState(T_STRUM)) {
+		resetKey(1);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getYLW() == '0' && GetAsyncKeyState(T_YLW) && GetAsyncKeyState(T_STRUM)) {
+		resetKey(2);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getBLE() == '0' && GetAsyncKeyState(T_BLE) && GetAsyncKeyState(T_STRUM)) {
+		resetKey(3);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getORG() == '0' && GetAsyncKeyState(T_ORG) && GetAsyncKeyState(T_STRUM)) {
+		resetKey(4);
+
+		addCombo(1);
+		addPoints(1);
+	}
+
+	//O Keys
+	if (getGRN() == 'O' && GetAsyncKeyState(T_GRN)) {
+		resetKey(0);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getRED() == 'O' && GetAsyncKeyState(T_RED)) {
+		resetKey(1);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getYLW() == 'O' && GetAsyncKeyState(T_YLW)) {
+		resetKey(2);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getBLE() == 'O' && GetAsyncKeyState(T_BLE)) {
+		resetKey(3);
+
+		addCombo(1);
+		addPoints(1);
+	}
+	if (getORG() == 'O' && GetAsyncKeyState(T_ORG)) {
+		resetKey(4);
+
+		addCombo(1);
+		addPoints(1);
 	}
 }
 
