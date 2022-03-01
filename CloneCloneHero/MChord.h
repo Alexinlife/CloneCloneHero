@@ -30,7 +30,7 @@ public:
 	/**
 	* Copy constructor for MChord
 	*/
-	MChord(const MChord& c);
+	//MChord(const MChord& c);
 
 	/**
 	* Overridden constructor for MChord
