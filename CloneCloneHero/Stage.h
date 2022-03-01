@@ -1,5 +1,5 @@
 #include "Chart.h"
-#include "Chord.h"
+#include "MChord.h"
 #include <iostream>
 #include <Windows.h>
 
@@ -40,7 +40,7 @@ public:
 	//Destructor
 	~Stage();
 
-	void nextNote(Chord c);
+	void nextNote(MChord c);
 
 	void push();
 

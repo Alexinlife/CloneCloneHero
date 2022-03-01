@@ -1,4 +1,5 @@
 #include "Stage.h"
+#include "MChord.h"
 
 //Constructor
 Stage::Stage() {
@@ -15,7 +16,7 @@ Stage::~Stage() {
 
 }
 
-void Stage::nextNote(Chord c) {
+void Stage::nextNote(MChord c) {
 	char note = '0';
 	switch (c.getType())
 	{

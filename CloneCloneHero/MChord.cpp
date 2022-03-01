@@ -1,6 +1,6 @@
-#include "Chord.h";
+#include "MChord.h";
 
-Chord::Chord()
+MChord::MChord()
 {
 	notes = 0; // open note
 	type = 3;  // open note
@@ -8,7 +8,7 @@ Chord::Chord()
 	sustain = 0;
 }
 
-Chord::Chord(int n, int t, float d, float s)
+MChord::MChord(int n, int t, float d, float s)
 {
 	notes = 0; // open note
 	type = 3;  // open note
@@ -26,12 +26,17 @@ Chord::Chord(int n, int t, float d, float s)
 	sustain = s;
 }
 
-Chord::~Chord()
+MChord::MChord(const MChord& c)
 {
 
 }
 
-/*const string Chord::getNotes()
+MChord::~MChord()
+{
+
+}
+
+/*const string MChord::getNotes()
 {
 	string note;
 	switch (type)
@@ -179,22 +184,22 @@ Chord::~Chord()
 	}
 }*/
 
-const int Chord::getNotes()
+const int MChord::getNotes()
 {
 	return notes;
 }
 
-const int Chord::getType()
+const int MChord::getType()
 {
 	return type;
 }
 
-const float Chord::getDelay()
+const float MChord::getDelay()
 {
 	return delay;
 }
 
-const float Chord::getSustain()
+const float MChord::getSustain()
 {
 	return sustain;
 }
