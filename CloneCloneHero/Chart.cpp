@@ -7,9 +7,27 @@ Chart::Chart()
 	tempo = 120;
 }
 
+Chart::Chart(const Chart& copyChart)
+{
+	beats = copyChart.beats;
+	measures = copyChart.measures;
+	tempo = copyChart.tempo;
+	chords = copyChart.chords;
+}
+
 Chart::~Chart()
 {
 
+}
+
+Chart& Chart::operator=(Chart c)
+{
+	beats = c.beats;
+	measures = c.measures;
+	tempo = c.tempo;
+	chords = c.chords;
+
+	return *this;
 }
 
 void Chart::pushChord(int notes, int type, float delay, float sustain)

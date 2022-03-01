@@ -23,10 +23,14 @@ class Chart
 		*/
 		Chart();
 
+		Chart(const Chart& copyChart);
+
 		/**
 		* Destructor for Chart
 		*/
 		~Chart();
+
+		Chart& operator=(Chart c);
 
 		/**
 		* Adds a chord to the chart. If at least one chord is added,
@@ -73,6 +77,11 @@ class Chart
 		*/
 		string toString();
 
+		/**
+		* Indicates if the chart is empty
+		* 
+		* Returns: true if empty or false if not
+		*/
 		bool isEmpty();
 
 		/**

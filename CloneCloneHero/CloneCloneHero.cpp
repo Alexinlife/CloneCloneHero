@@ -30,6 +30,10 @@ int main()
 	chart.pushChord(12, 0, 0, 5.25);
 
 	chart.pushChord(2, 0, 0, 6);
+
+	Chart copie;
+	copie = chart;
+
 	cout << "2" << endl;
 	system("PAUSE");
 	//Chart chart;
@@ -38,10 +42,10 @@ int main()
 	//chart = editor.test();
 	cout << "4" << endl;
 	system("PAUSE");
-	chart.nextChord();
+	copie.nextChord();
 	cout << "5" << endl;
 	system("PAUSE");
-	stage.nextNote(&chart);
+	stage.nextNote(&copie);
 	cout << "6" << endl;
 	system("PAUSE");
 	stage.afficher();
@@ -50,7 +54,7 @@ int main()
 	while (1) {
 		stage.afficher();
 		system("PAUSE");
-		stage.nextNote(&chart);
+		stage.nextNote(&copie);
 	}
 
 	return 0;
