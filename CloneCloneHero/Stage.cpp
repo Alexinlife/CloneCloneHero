@@ -1,6 +1,5 @@
 #include "Stage.h"
 
-
 //Constructor
 Stage::Stage() {
 	for (int i = 0; i < LONGUEUR_STG; i++) {
@@ -182,6 +181,37 @@ void Stage::nextNote(Chord c) {
 
 	default:
 		break;
+	}
+}
+
+void Stage::push() {
+	for (int i = LONGUEUR_STG - 1; i > 0; i--) {
+		for (int j = 0; j < LARGEUR_STG; j++) {
+			theStage[i][j] = theStage[i - 1][j];
+		}
+	}
+}
+
+void Stage::afficher() {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	for (int i = 0; i < LONGUEUR_STG; i++) {
+		SetConsoleTextAttribute(h, colors[0]);
+		cout << theStage[i][0];
+
+		SetConsoleTextAttribute(h, colors[1]);
+		cout << theStage[i][1];
+
+		SetConsoleTextAttribute(h, colors[2]);
+		cout << theStage[i][2];
+		
+		SetConsoleTextAttribute(h, colors[3]);
+		cout << theStage[i][3];
+
+		SetConsoleTextAttribute(h, colors[4]);
+		cout << theStage[i][4];
+		//cout << GRN theStage[i][0] << RED theStage[i][1] << YLW theStage[i][2] << BLU theStage[i][3] << ORG theStage[i][4] << endl;
+		
 	}
 }
 
