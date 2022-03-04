@@ -1,7 +1,10 @@
 #include "Chart.h"
 #include "MChord.h"
 #include <iostream>
+#include <math.h>
+#include <chrono>
 #include <Windows.h>
+#include "Communication.h"
 
 using namespace std;
 
@@ -42,11 +45,13 @@ public:
 	//Destructor
 	~Stage();
 
-	void nextNote(Chart* c);
+	void play(Chart* chart);
+
+	void nextChord(Chart* chart);
 
 	void push();
 
-	void afficher();
+	void cycle();
 
 	char getGRN();
 	char getRED();
@@ -69,9 +74,12 @@ public:
 
 
 private:
+	Communication communication;
 	char theStage[LONGUEUR_STG][LARGEUR_STG];
+	int* inputs;
 	int points;
 	int combo;
+	float emptyLines;
 };
 
 #endif

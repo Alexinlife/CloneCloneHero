@@ -1,6 +1,8 @@
 #include <queue>
 #include "MChord.h"
 
+#include <iostream>
+
 using namespace std;
 
 #ifndef CHART_H
@@ -85,12 +87,24 @@ class Chart
 		bool isEmpty();
 
 		/**
+		* Gets the length in seconds of the song
+		*/
+		float getLength();
+
+		/**
 		* Sets the signature of the chart
 		* 
 		* b: beats
 		* m: measures
 		*/
 		void setSignature(int b, int m);
+
+		int getBeats();
+
+		/**
+		* Gets the tempo of the chart
+		*/
+		float getTempo();
 
 		/**
 		* Sets the tempo of the chart

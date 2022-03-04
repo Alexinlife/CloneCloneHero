@@ -140,14 +140,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chart.cpp" />
-    <ClCompile Include="Chord.cpp" />
+    <ClCompile Include="Communication.cpp" />
+    <ClCompile Include="include\serial\SerialPort.cpp" />
+    <ClCompile Include="MChord.cpp" />
     <ClCompile Include="CloneCloneHero.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chart.h" />
-    <ClInclude Include="Chord.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Communication.h" />
+    <ClInclude Include="include\json.hpp" />
+    <ClInclude Include="include\serial\SerialPort.hpp" />
+    <ClInclude Include="MChord.h" />
+    <ClInclude Include="Editor.h" />
+    <ClInclude Include="Stage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

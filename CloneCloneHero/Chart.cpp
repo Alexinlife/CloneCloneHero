@@ -73,10 +73,25 @@ bool Chart::isEmpty()
 	return chords.empty();
 }
 
+float Chart::getLength()
+{
+	return 30 /*(chords.back().getDelay()) * (60 / tempo)*/ ;
+}
+
 void Chart::setSignature(int b, int m)
 {
 	beats = b;
 	measures = m;
+}
+
+int Chart::getBeats()
+{
+	return beats;
+}
+
+float Chart::getTempo()
+{
+	return tempo;
 }
 
 void Chart::setTempo(float t)
