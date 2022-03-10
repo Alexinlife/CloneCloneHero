@@ -75,7 +75,7 @@ bool Chart::isEmpty()
 
 float Chart::getLength()
 {
-	return 30 /*(chords.back().getDelay()) * (60 / tempo)*/ ;
+	return 120;
 }
 
 void Chart::setSignature(int b, int m)

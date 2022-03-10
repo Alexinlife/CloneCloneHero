@@ -15,12 +15,12 @@ Chart Editor::test()
 	chart.setSignature(4, 4);
 	chart.setTempo(120);
 
-	chart.pushChord(31, 0, 0, 0);
-	chart.pushChord(0, 0, 1, 0);
-	chart.pushChord(0, 0, 1, 0);
-	chart.pushChord(0, 0, 1, 0);
+	chart.pushChord(1, 1, 0, 0);
+	chart.pushChord(2, 1, 1, 0);
+	chart.pushChord(4, 1, 1, 0);
+	chart.pushChord(8, 1, 1, 0);
 
-	chart.pushChord(31, 0, 1, 0);
+	chart.pushChord(16, 1, 1, 0);
 	chart.pushChord(0, 0, 1, 0);
 	chart.pushChord(0, 0, 1, 0);
 	chart.pushChord(0, 0, 1, 0);
