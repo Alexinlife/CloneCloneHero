@@ -8,6 +8,8 @@ Stage::Stage() {
 			theStage[i][j] = ' ';
 		}
 	}
+	clock_t start = clock();
+
 	points = 0;
 	combo = 0;
 	emptyLines = 0;
@@ -19,38 +21,24 @@ Stage::~Stage() {
 
 void Stage::play(Chart* chart)
 {
-	clock_t start = clock();
-	float spb = 60 / chart->getTempo();
 	float length = chart->getLength();
 
-	while ((clock() - start) / CLOCKS_PER_SEC <= length /* + 20 */)
+	while ((clock() - start) * 1000 / CLOCKS_PER_SEC <= length)
 	{
-		if (fmod((float)(clock() - (float)start) / CLOCKS_PER_SEC, spb / 4) == 0)
-		{
-			inputs = communication.fetch();
-			cycle();
-			nextChord(chart);
-		}
+		inputs = communication.fetch();
+		display();
+		update(chart);
 	}
 }
 
-void Stage::nextChord(Chart* chart)
+void Stage::update(Chart* chart)
 {
 	push();
 
-	if (emptyLines != 0)
-	{
-		emptyLines -= 1 / (float)chart->getBeats();
-	}
-
-	if (!chart->isEmpty() && emptyLines == 0)
+	if (!chart->isEmpty() && (clock() - start) * 1000 / CLOCKS_PER_SEC >= chart->nextChord().getDelay())
 	{
 		MChord c = chart->unqueueChord();
 		char note;
-		if (!chart->isEmpty())
-		{
-			emptyLines = chart->nextChord().getDelay();
-		}
 
 		switch (c.getType())
 		{
@@ -313,7 +301,7 @@ void Stage::push() {
 	}
 }
 
-void Stage::cycle() {
+void Stage::display() {
 	/*
 		defeault = 7
 		GRN = 2

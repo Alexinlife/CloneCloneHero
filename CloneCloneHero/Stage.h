@@ -47,11 +47,11 @@ public:
 
 	void play(Chart* chart);
 
-	void nextChord(Chart* chart);
+	void update(Chart* chart);
 
 	void push();
 
-	void cycle();
+	void display();
 
 	char getGRN();
 	char getRED();
@@ -75,6 +75,7 @@ public:
 
 private:
 	Communication communication;
+	clock_t start;
 	char theStage[LONGUEUR_STG][LARGEUR_STG];
 	int* inputs;
 	int points;
