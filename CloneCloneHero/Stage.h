@@ -81,6 +81,7 @@ private:
 	int points;
 	int combo;
 	float emptyLines;
+	clock_t lastBeat;
 };
 
 #endif

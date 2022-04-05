@@ -104,7 +104,6 @@ Chart Editor::test()
 
 	chart.pushChord(31, 0, 300, 0);
 
-
 	chart.pushChord(12, 0, 400, 0);
 
 	chart.pushChord(6, 0, 500, 0);

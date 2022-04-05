@@ -2,7 +2,7 @@
 
 Communication::Communication()
 {
-    arduino = new SerialPort("COM8", BAUD);
+    arduino = new SerialPort("COM6", BAUD);
 
     if (arduino->isConnected()) {
         cout << "Connected" << endl;
@@ -63,16 +63,71 @@ bool Communication::receiveFrom(SerialPort* arduino, string& msg)
 
 int* Communication::fetch()
 {
-    j_msg_send["led1"] = led_state;
-    j_msg_send["led4"] = led_state;
-    j_msg_send["led7"] = led_state;
-    j_msg_send["led10"] = led_state;
+    j_msg_send.clear();
+    switch (ledState)
+    {
+    case 0:
+        j_msg_send["led10"] = led_state;
+        j_msg_send["led1"] = led_state;
+        break;
+    case 1:
+        j_msg_send["led2"] = led_state;
+        j_msg_send["led3"] = led_state;
+        j_msg_send["led4"] = !led_state;
+        break;
+    case 2:
+        j_msg_send["led2"] = !led_state;
+        j_msg_send["led3"] = led_state;
+        j_msg_send["led4"] = led_state;
+        j_msg_send["led5"] = !led_state;
+        break;
+    case 3:
+        j_msg_send["led3"] = !led_state;
+        j_msg_send["led4"] = led_state;
+        j_msg_send["led5"] = led_state;
+        j_msg_send["led6"] = !led_state;
+        break;
+    case 4:
+        j_msg_send["led4"] = !led_state;
+        j_msg_send["led5"] = led_state;
+        j_msg_send["led6"] = led_state;
+        j_msg_send["led7"] = !led_state;
+        break;
+    case 5:
+        j_msg_send["led5"] = !led_state;
+        j_msg_send["led6"] = led_state;
+        j_msg_send["led7"] = led_state;
+        j_msg_send["led8"] = !led_state;
+        break;
+    case 6:
+        j_msg_send["led6"] = !led_state;
+        j_msg_send["led7"] = led_state;
+        j_msg_send["led8"] = led_state;
+        j_msg_send["led9"] = !led_state;
+        break;
+    case 7:
+        j_msg_send["led7"] = !led_state;
+        j_msg_send["led8"] = led_state;
+        j_msg_send["led9"] = led_state;
+        break;
+    case 8:
+        //j_msg_send["led8"] = !led_state;
+        j_msg_send["led9"] = led_state;
+        break;
+    case 9:
+        //j_msg_send["led9"] = !led_state;
+        j_msg_send["led10"] = led_state;
+        break;
+    }
 
     if (!sendTo(arduino, j_msg_send))
     {
         cerr << "Erreur lors de l'envoie du message. " << endl;
+        
     }
-
+    
+    j_msg_send.clear();
+    
     // Reception message Arduino
     j_msg_rcv.clear(); // effacer le message precedent
     if (!receiveFrom(arduino, raw_msg))
@@ -85,13 +140,23 @@ int* Communication::fetch()
         for (int i = 0; i < 10; i++)
         {
             inputs[i] = j_msg_rcv[input_names[i]];
-            // cout << inputs[i] << "(" << i << ")" << endl;
         }
     }
 
-    led_state = !led_state;
+    cout << raw_msg << endl;
 
-    Sleep(10);
+
+    if (ledState >= 0 && ledState <= 7) {
+        ledState += ledModifier;
+    }
+    if (ledState == 7) {
+        //ledState = 0;
+        ledModifier = -1;
+    }
+    else if(ledModifier == -1 && ledState == 1)
+    {
+        ledModifier = 1;
+    }
 
     return inputs;
 }

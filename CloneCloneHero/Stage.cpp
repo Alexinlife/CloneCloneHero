@@ -13,6 +13,8 @@ Stage::Stage() {
 	points = 0;
 	combo = 0;
 	emptyLines = 0;
+	int buffer[10] = { 0,0,0,0,0,0,0,0,0,0 };
+	inputs = buffer;
 }
 
 Stage::~Stage() {
@@ -46,10 +48,10 @@ void Stage::update(Chart* chart)
 			note = '0';
 			break;
 		case 1:
-			note = 'O';
+			note = '@';
 			break;
 		case 2:
-			note = '@';
+			note = 'O';
 			break;
 		}
 		switch (c.getNotes())
@@ -301,6 +303,11 @@ void Stage::push() {
 	}
 }
 
+void clrscr()
+{
+	COORD cursorPosition;	cursorPosition.X = 0;	cursorPosition.Y = 0;	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
+}
+
 void Stage::display() {
 	/*
 		defeault = 7
@@ -319,6 +326,7 @@ void Stage::display() {
 		WHTB = 240
 	*/
 	system("CLS");
+	clrscr();
 	keyDetection();
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -350,7 +358,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << '|';
 
-	if (!inputs[0]) {
+	if (inputs[0] != 0) {
 		SetConsoleTextAttribute(h, GRNB);
 	}
 	else {
@@ -361,7 +369,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << 'X';
 
-	if (!inputs[1]) {
+	if (inputs[1] != 0) {
 		SetConsoleTextAttribute(h, REDB);
 	}
 	else {
@@ -372,7 +380,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << 'X';
 
-	if (!inputs[2]) {
+	if (inputs[2] != 0) {
 		SetConsoleTextAttribute(h, YLWB);
 	}
 	else {
@@ -383,7 +391,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << 'X';
 
-	if (!inputs[3]) {
+	if (inputs[3] != 0) {
 		SetConsoleTextAttribute(h, BLEB);
 	}
 	else {
@@ -394,7 +402,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << 'X';
 
-	if (!inputs[4]) {
+	if (inputs[4] != 0) {
 		SetConsoleTextAttribute(h, ORGB);
 	}
 	else {
@@ -448,31 +456,31 @@ void Stage::keyDetection() {
 	}
 
 	//0 Keys
-	if (getGRN() == '0' && !inputs[0] && (inputs[6] > 300 || inputs[6] < -300)) {
+	if (getGRN() == '0' && inputs[0] != 0 && (inputs[6] > 300 || inputs[6] < -300)) {
 		resetKey(0);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getRED() == '0' && !inputs[1] && (inputs[6] > 300 || inputs[6] < -300)) {
+	if (getRED() == '0' && inputs[1] != 0 && (inputs[6] > 300 || inputs[6] < -300)) {
 		resetKey(1);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getYLW() == '0' && !inputs[2] && (inputs[6] > 300 || inputs[6] < -300)) {
+	if (getYLW() == '0' && inputs[2] != 0 && (inputs[6] > 300 || inputs[6] < -300)) {
 		resetKey(2);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getBLE() == '0' && !inputs[3] && (inputs[6] > 300 || inputs[6] < -300)) {
+	if (getBLE() == '0' && inputs[3] != 0 && (inputs[6] > 300 || inputs[6] < -300)) {
 		resetKey(3);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getORG() == '0' && !inputs[4] && (inputs[6] > 300 || inputs[6] < -300)) {
+	if (getORG() == '0' && inputs[4] != 0 && (inputs[6] > 300 || inputs[6] < -300)) {
 		resetKey(4);
 
 		addCombo(1);
@@ -480,31 +488,31 @@ void Stage::keyDetection() {
 	}
 
 	//O Keys
-	if (getGRN() == 'O' && !inputs[0]) {
+	if (getGRN() == '@' && inputs[0] == 1) {
 		resetKey(0);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getRED() == 'O' && !inputs[1]) {
+	if (getRED() == '@' && inputs[1] == 1) {
 		resetKey(1);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getYLW() == 'O' && !inputs[2]) {
+	if (getYLW() == '@' && inputs[2] == 1) {
 		resetKey(2);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getBLE() == 'O' && !inputs[3]) {
+	if (getBLE() == '@' && inputs[3] == 1) {
 		resetKey(3);
 
 		addCombo(1);
 		addPoints(1);
 	}
-	if (getORG() == 'O' && !inputs[4]) {
+	if (getORG() == '@' && inputs[4] == 1) {
 		resetKey(4);
 
 		addCombo(1);

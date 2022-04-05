@@ -60,7 +60,8 @@ private:
 	* 9: accelerometre z
 	*/
 	int inputs[10];
-
+	int ledState = 0;
+	int ledModifier = 1;
 };
 
 #endif
