@@ -8,6 +8,8 @@ Stage::Stage() {
 			theStage[i][j] = ' ';
 		}
 	}
+	clock_t start = clock();
+
 	points = 0;
 	combo = 0;
 	emptyLines = 0;
@@ -21,41 +23,24 @@ Stage::~Stage() {
 
 void Stage::play(Chart* chart)
 {
-	clock_t start = clock();
-	float spb = 60 / chart->getTempo();
 	float length = chart->getLength();
-	bool beat = false;
 
-	while ((clock() - start) / CLOCKS_PER_SEC <= length /* + 20 */)
+	while ((clock() - start) * 1000 / CLOCKS_PER_SEC <= length)
 	{
-		
-		cycle();
 		inputs = communication.fetch();
-		if (((float)clock() - (float)lastBeat) /CLOCKS_PER_SEC >= spb / 4)
-		{
-			nextChord(chart);
-		}
+		display();
+		update(chart);
 	}
 }
 
-void Stage::nextChord(Chart* chart)
+void Stage::update(Chart* chart)
 {
 	push();
-	lastBeat = clock();
 
-	if (emptyLines != 0)
-	{
-		emptyLines -= 1 / (float)chart->getBeats();
-	}
-
-	if (!chart->isEmpty() && emptyLines == 0)
+	if (!chart->isEmpty() && (clock() - start) * 1000 / CLOCKS_PER_SEC >= chart->nextChord().getDelay())
 	{
 		MChord c = chart->unqueueChord();
 		char note;
-		if (!chart->isEmpty())
-		{
-			emptyLines = chart->nextChord().getDelay();
-		}
 
 		switch (c.getType())
 		{
@@ -323,7 +308,7 @@ void clrscr()
 	COORD cursorPosition;	cursorPosition.X = 0;	cursorPosition.Y = 0;	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
 }
 
-void Stage::cycle() {
+void Stage::display() {
 	/*
 		defeault = 7
 		GRN = 2
@@ -340,7 +325,7 @@ void Stage::cycle() {
 
 		WHTB = 240
 	*/
-	//system("CLS");
+	system("CLS");
 	clrscr();
 	keyDetection();
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);

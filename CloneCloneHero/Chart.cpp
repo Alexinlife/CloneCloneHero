@@ -2,16 +2,12 @@
 
 Chart::Chart()
 {
-	beats = 4;
-	measures = 4;
-	tempo = 120;
+	length = 0;
 }
 
 Chart::Chart(const Chart& copyChart)
 {
-	beats = copyChart.beats;
-	measures = copyChart.measures;
-	tempo = copyChart.tempo;
+	length = copyChart.length;
 	chords = copyChart.chords;
 }
 
@@ -22,9 +18,7 @@ Chart::~Chart()
 
 Chart& Chart::operator=(Chart c)
 {
-	beats = c.beats;
-	measures = c.measures;
-	tempo = c.tempo;
+	length = c.length;
 	chords = c.chords;
 
 	return *this;
@@ -48,26 +42,6 @@ MChord Chart::unqueueChord()
 	return unqueued;
 }
 
-void Chart::copyBeat(int index)
-{
-
-}
-
-void Chart::copyMeasure(int index)
-{
-
-}
-
-void Chart::copyPart(float begin, float end)
-{
-
-}
-
-string Chart::toString()
-{
-	return("");
-}
-
 bool Chart::isEmpty()
 {
 	return chords.empty();
@@ -75,26 +49,13 @@ bool Chart::isEmpty()
 
 float Chart::getLength()
 {
-	return 120;
+	return length;
 }
 
-void Chart::setSignature(int b, int m)
+void Chart::setLength(int ms)
 {
-	beats = b;
-	measures = m;
-}
-
-int Chart::getBeats()
-{
-	return beats;
-}
-
-float Chart::getTempo()
-{
-	return tempo;
-}
-
-void Chart::setTempo(float t)
-{
-	tempo = t;
+	if (ms > 0)
+	{
+		length = ms;
+	}
 }
