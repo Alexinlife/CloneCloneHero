@@ -61,18 +61,6 @@ class Chart
 
 		/**
 		* Finds an existing beat and copies it in the chart
-		*/
-		void copyBeat(int index);
-
-		/**
-		* Finds a measure and copies it in the chart
-		*/
-		void copyMeasure(int index);
-
-		/**
-		* Finds a section of the chart and copies it to the current end
-		*/
-		void copyPart(float begin, float end);
 
 		/**
 		* Converts the chart to a string that can be used by the Game class
@@ -87,36 +75,17 @@ class Chart
 		bool isEmpty();
 
 		/**
-		* Gets the length in seconds of the song
+		* Gets the length of the song in "milliseconds"
 		*/
 		float getLength();
 
 		/**
-		* Sets the signature of the chart
-		* 
-		* b: beats
-		* m: measures
+		* Sets the length of the song in "milliseconds"
 		*/
-		void setSignature(int b, int m);
-
-		int getBeats();
-
-		/**
-		* Gets the tempo of the chart
-		*/
-		float getTempo();
-
-		/**
-		* Sets the tempo of the chart
-		* 
-		* t: tempo
-		*/
-		void setTempo(float t);
+		void setLength(int ms);
 
 	private:
-		int beats;
-		int measures;
-		float tempo;
+		int length;
 		queue<MChord> chords;
 };
 
