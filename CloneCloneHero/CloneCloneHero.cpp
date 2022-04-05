@@ -10,6 +10,5 @@ int main() {
     *chart = editor.test();
     stage.play(chart);
 
-
     return 0;
 }

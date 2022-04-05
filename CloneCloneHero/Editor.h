@@ -1,7 +1,11 @@
+#include <iostream>
+#include <fstream>
 #include "Chart.h"
 
 #ifndef EDITOR_H
 #define EDITOR_H
+
+using namespace std;
 
 /**
 * Author: Alex Lajeunesse
@@ -22,6 +26,11 @@ public:
 	* Destructor for Editor
 	*/
 	~Editor();
+
+	/**
+	* Reads song and adds it to the chart
+	*/
+	void readSongFile(string path);
 
 	/**
 	* Starts the Editor
