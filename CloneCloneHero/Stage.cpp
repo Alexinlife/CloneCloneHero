@@ -12,6 +12,9 @@ Stage::Stage() {
 
 	points = 0;
 	combo = 0;
+	bestCombo = 0;
+	sp = 0;
+	spEnabled = false;
 	emptyLines = 0;
 	int buffer[10] = { 0,0,0,0,0,0,0,0,0,0 };
 	inputs = buffer;
@@ -24,12 +27,28 @@ Stage::~Stage() {
 void Stage::play(Chart* chart)
 {
 	float length = chart->getLength();
+	int spCountdown = 0;
+	int timeInSec = 0;
 
 	while ((clock() - start) * 1000 / CLOCKS_PER_SEC <= length)
 	{
-		inputs = communication.fetch();
+		inputs = communication.fetch(sp);
 		display();
 		update(chart);
+		timeInSec = (clock() - start) / CLOCKS_PER_SEC;
+		if (sp == 10)
+		{
+			spEnabled = true;
+		}
+		else if (sp == 0)
+		{
+			spEnabled = false;
+		}
+		if (timeInSec % 1 == 0 && spEnabled && timeInSec != spCountdown)
+		{
+			spCountdown = timeInSec;
+			sp--;
+		}
 	}
 }
 
@@ -413,7 +432,7 @@ void Stage::display() {
 	SetConsoleTextAttribute(h, DEFAULT_COLOR);
 	cout << '|' << endl;
 
-	cout << "\nCombo: " << combo << "   Points: " << points << endl;
+	cout << "\nMeilleur combo: " << bestCombo << "   Combo: " << combo << "   Points: " << points << endl;
 }
 
 char Stage::getGRN() {
@@ -527,6 +546,14 @@ int Stage::getPoints() {
 
 void Stage::addPoints(int x) {
 	points += x;
+	if (points % 5 == 0)
+	{
+		sp++;
+	}
+	if (spEnabled)
+	{
+		points += x;
+	}
 }
 
 //Combo counter fonctions
@@ -539,5 +566,9 @@ void Stage::addCombo(int x) {
 }
 
 void Stage::resetCombo() {
+	if (bestCombo < combo)
+	{
+		bestCombo = combo;
+	}
 	combo = 0;
 }

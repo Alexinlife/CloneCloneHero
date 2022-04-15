@@ -33,7 +33,7 @@ void Editor::readSongFile(string path)
 
 				if (value != "")
 				{
-					delay = stoi(value) * 2.6;
+					delay = stoi(value) * 2.80;
 				}
 				break;
 			case 1:
@@ -77,10 +77,9 @@ void Editor::readSongFile(string path)
 
 		if (++col == 4)
 		{
-			if (!chart.isEmpty() && chart.nextChord().getDelay() == delay)
+			if (!chart.isEmpty() && chart.lastChord().getDelay() == delay)
 			{
-				chart.nextChord().setNotes(chart.nextChord().getNotes() + note);
-				cout << "add note" << endl;
+				chart.lastChord().setNotes(chart.lastChord().getNotes() + note);
 			}
 			else
 			{
@@ -89,7 +88,7 @@ void Editor::readSongFile(string path)
 		}
 	}
 
-	chart.setLength(chart.nextChord().getDelay() + 600000);
+	chart.setLength(chart.lastChord().getDelay() + 10000);
 
 	songFile.close();
 }

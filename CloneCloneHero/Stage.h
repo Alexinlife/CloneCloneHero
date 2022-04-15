@@ -80,6 +80,9 @@ private:
 	int* inputs;
 	int points;
 	int combo;
+	int bestCombo;
+	int sp;
+	bool spEnabled;
 	float emptyLines;
 	clock_t lastBeat;
 };

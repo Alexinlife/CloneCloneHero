@@ -53,6 +53,13 @@ class Chart
 		MChord nextChord();
 
 		/**
+		* Gets the last chord in the queue
+		*
+		* Returns: the last Chord in the queue
+		*/
+		MChord& lastChord();
+
+		/**
 		* Removes the first chord and returns it
 		*
 		* Returns: the first Chord in the queue

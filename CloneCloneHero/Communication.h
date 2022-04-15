@@ -37,7 +37,7 @@ public:
 
 	bool receiveFrom(SerialPort* arduino, string& msg);
 
-	int* fetch();
+	int* fetch(int sp);
 
 private:
 	SerialPort* arduino;

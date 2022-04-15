@@ -35,6 +35,11 @@ MChord Chart::nextChord()
 	return chords.front();
 }
 
+MChord& Chart::lastChord()
+{
+	return chords.back();
+}
+
 MChord Chart::unqueueChord()
 {
 	MChord unqueued = nextChord();
